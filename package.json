@@ -1,0 +1,28 @@
+{
+  "name": "node-caldav",
+  "version": "0.0.1",
+  "description": "A lightweight node.js Caldav Client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jachwe/node-caldav.git"
+  },
+  "keywords": [
+    "caldav",
+    "calendar",
+    "json",
+    "ics"
+  ],
+  "dependencies": {
+    "libxmljs": "0.10.0"
+  },
+  "author": "Jewe Pasch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jachwe/node-caldav/issues"
+  },
+  "homepage": "https://github.com/jachwe/node-caldav"
+}
