@@ -14,12 +14,12 @@ module.exports = {
      */
 	
   getList: function(url,user,pass,cb){
-	 
-	 var urlparts = /(https?)\:\/\/(.*?)(\/.*)/gi.exec(url)
-	 var port = 80;
-	 if( urlparts[1] == "https" ){ port = 443 }
-	 var host = urlparts[2];
-	 var path = urlparts[3];
+
+      var urlparts = /(https?)\:\/\/(.*?):?(\d*)?(\/.*\/?)/gi.exec(url);
+      var protocol = urlparts[1];
+      var host = urlparts[2];
+      var port = urlparts[3] || (protocol === "https" ? 443 : 80);
+      var path = urlparts[4];
 	  
 	var xml = '<?xml version="1.0" encoding="utf-8" ?>\n' +
 	' <D:propfind xmlns:D="DAV:" xmlns:C="http://calendarserver.org/ns/">\n' +
@@ -99,13 +99,13 @@ module.exports = {
 
  */
   getEvents: function (url,user,pass,cb){
-	  
- 	 var urlparts = /(https?)\:\/\/(.*?)(\/.*)/gi.exec(url)
- 	 var port = 80;
- 	 if( urlparts[1] == "https" ){ port = 443 }
- 	 var host = urlparts[2];
- 	 var path = urlparts[3];
-	
+
+  var urlparts = /(https?)\:\/\/(.*?):?(\d*)?(\/.*\/?)/gi.exec(url);
+  var protocol = urlparts[1];
+  var host = urlparts[2];
+  var port = urlparts[3] || (protocol === "https" ? 443 : 80);
+  var path = urlparts[4];
+
 	var xml = '<?xml version="1.0" encoding="utf-8" ?>\n' +
 	'<C:calendar-query xmlns:D="DAV:" xmlns:C="urn:ietf:params:xml:ns:caldav">\n' +
 	'  <D:prop>\n' +
