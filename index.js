@@ -98,10 +98,11 @@ module.exports = {
    * @param  {String} url
    * @param  {String} user
    * @param  {String} pass
+   * @param  {String} date from which to start like 20140617T112033Z
    * @param  {function} cb
 
    */
-  getEvents: function (url, user, pass, cb) {
+  getEvents: function (url, user, pass, start, cb) {
 
     var urlparts = /(https?)\:\/\/(.*?):?(\d*)?(\/.*\/?)/gi.exec(url);
     var protocol = urlparts[1];
@@ -117,7 +118,7 @@ module.exports = {
       '  <C:filter>\n' +
       '    <C:comp-filter name="VCALENDAR">\n' +
       '      <C:comp-filter name="VEVENT">\n' +
-      '        <C:time-range start="20140617T112033Z"/>\n' +
+      '        <C:time-range start="'+start+'"/>\n' +
       '      </C:comp-filter>\n' +
       '    </C:comp-filter>\n' +
       '  </C:filter>\n' +
