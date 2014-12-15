@@ -98,16 +98,19 @@ module.exports = {
    * @param  {String} url
    * @param  {String} user
    * @param  {String} pass
+   * @param  {String} date from which to start like 20140101T120000Z
+   * @param  {String} date from which to stop like 20140102T120000Z, optional (can be undefined)
    * @param  {function} cb
 
    */
-  getEvents: function (url, user, pass, cb) {
+  getEvents: function (url, user, pass, start, end, cb) {
 
     var urlparts = /(https?)\:\/\/(.*?):?(\d*)?(\/.*\/?)/gi.exec(url);
     var protocol = urlparts[1];
     var host = urlparts[2];
     var port = urlparts[3] || (protocol === "https" ? 443 : 80);
     var path = urlparts[4];
+    var endTimeRange = (end) ? ' end="'+end+'"' : "";
 
     var xml = '<?xml version="1.0" encoding="utf-8" ?>\n' +
       '<C:calendar-query xmlns:D="DAV:" xmlns:C="urn:ietf:params:xml:ns:caldav">\n' +
@@ -117,7 +120,7 @@ module.exports = {
       '  <C:filter>\n' +
       '    <C:comp-filter name="VCALENDAR">\n' +
       '      <C:comp-filter name="VEVENT">\n' +
-      '        <C:time-range start="20140617T112033Z"/>\n' +
+      '        <C:time-range start="'+start+'"'+endTimeRange+'/>\n' +
       '      </C:comp-filter>\n' +
       '    </C:comp-filter>\n' +
       '  </C:filter>\n' +

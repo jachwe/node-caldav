@@ -12,6 +12,6 @@ var caldav = require("node-caldav");
 
 caldav.getList([caldav_baseurl],[username],[password],callback)
 
-caldav.getEvnts([caldav_calendarurl],[username],[password],callback)
+caldav.getEvents([caldav_calendarurl],[username],[password],[startDate],[endDate],callback)
 
 ```
